@@ -128,6 +128,7 @@
 	var store = (0, _redux.createStore)(testApp, initialState);
 
 	// end redux logic block
+
 	var app = {
 	  controller: function controller() {
 	    return {};
@@ -135,10 +136,11 @@
 	  view: function view(ctrl) {
 	    var data = store.getState();
 	    return (0, _mithril2.default)('div', [(0, _mithril2.default)('button', {
+	      style: 'background-color:#00f;color:white;',
 	      onclick: function onclick(event) {
 	        store.dispatch(clickButton((0, _moment2.default)().format()));
 	      }
-	    }, 'Click me!'), (0, _mithril2.default)('button', {
+	    }, 'Click me yo!'), (0, _mithril2.default)('button', {
 	      onclick: function onclick(event) {
 	        store.dispatch(toggleButton((0, _moment2.default)().format()));
 	      },

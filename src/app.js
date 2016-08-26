@@ -71,6 +71,7 @@ function testApp (state = initialState, action) {
 const store = createStore(testApp, initialState)
 
 // end redux logic block
+
 const app = {
   controller: () => {
     return {}
@@ -79,10 +80,11 @@ const app = {
     var data = store.getState()
     return m('div', [
       m('button', {
+        style: 'background-color:#00f;color:white;',
         onclick: event => {
           store.dispatch(clickButton(moment().format()))
         }
-      }, 'Click me!'),
+      }, 'Click me yo!'),
       m('button', {
         onclick: event => {
           store.dispatch(toggleButton(moment().format()))
