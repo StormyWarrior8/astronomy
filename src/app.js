@@ -1,7 +1,9 @@
 import m from 'mithril'
 import _ from 'lodash'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
 import moment from 'moment'
+import request from 'superagent'
 // redux logic block
 
 // actions
@@ -24,10 +26,32 @@ function toggleButton (time) {
   }
 }
 
+const FETCH_REPOS = 'FETCH_REPOS'
+
+function fetchRepos (time) {
+  return {
+    type: FETCH_REPOS,
+    time
+  }
+}
+
+const GOT_REPOS = 'GOT_REPOS'
+
+function gotRepos (repos, time) {
+  return {
+    type: GOT_REPOS,
+    time,
+    repos
+  }
+}
 // reducers
 
 const initialState = {
   toggled: false,
+  fetchingRepos: false,
+  didInvalidate: false,
+  lastUpdated:null,
+  repos : [],
   userActions: [
     {
       type: 'USER_LOADED_PAGE',
@@ -61,14 +85,60 @@ function testApp (state = initialState, action) {
           }
         ]
       }
+    case FETCH_REPOS:
+      return {
+        ...state,
+        fetchingRepos: true,
+        userActions: [
+          ...state.userActions,
+          {
+            time: action.time,
+            type: action.type
+          }
+        ]
+      }
+    case GOT_REPOS:
+      return {
+        ...state,
+        fetchingRepos: false,
+        repos: action.repos,
+        userActions: [
+          ...state.userActions,
+          {
+            time: action.time,
+            type: action.type
+          }
+        ]
+      }
     default:
       return state
   }
 }
 
+// thunks
+
+
+const fetchReposThunk = () => {
+  return dispatch => {
+    dispatch(fetchRepos(moment().format()))
+    return new Promise((resolve, reject)=>{
+      request('http://localhost:9998/repos').then(results=>{
+        console.log(results)
+        dispatch(gotRepos(results.body, moment().format()))
+        resolve(results)
+      }).catch(reject)
+    })
+  }
+}
+
 // store
 
-const store = createStore(testApp, initialState)
+const store = createStore(
+  testApp,
+  applyMiddleware(
+    thunkMiddleware // lets us dispatch() functions
+    // loggerMiddleware // neat middleware that logs actions
+  ))
 
 // end redux logic block
 
@@ -85,6 +155,14 @@ const app = {
           store.dispatch(clickButton(moment().format()))
         }
       }, 'Click me yo!'),
+      m('button', {
+        style: 'background-color:#00f;color:white;',
+        onclick: event => {
+          store.dispatch(fetchReposThunk()).then(()=>{
+            m.redraw(true)
+          })
+        }
+      }, 'Fetch repos'),
       m('button', {
         onclick: event => {
           store.dispatch(toggleButton(moment().format()))
@@ -105,7 +183,16 @@ const app = {
             '\n'
           ].join(' ')
         }))
-      ])
+      ]),
+      m('ul',_.map(data.repos, repo => {
+        console.log(repo)
+        return m('li', [
+          repo.full_name,
+          '=>',
+          m('img',{src:repo.owner.avatar_url, width:25})
+        ])
+      }))
+
     ])
   }
 }

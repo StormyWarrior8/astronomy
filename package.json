@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack",
-    "http-server": "http-server"
+    "http-server": "http-server",
+    "json-server": "json-server"
   },
   "repository": {
     "type": "git",
@@ -55,6 +56,7 @@
     "numbro": "^1.9.3",
     "react": "^15.3.1",
     "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
     "superagent": "^2.2.0",
     "timeago": "^1.5.3"
   }

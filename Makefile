@@ -12,7 +12,11 @@ server:
 	npm run http-server . -- -p 9999
 .PHONY: server
 
-dev_start: server watch
+fake-github:
+	npm run json-server -- gh-repo.js --watch gh-repo.js --port 9998
+.PHONY: fake-github
+
+dev_start: server watch fake-github
 .PHONY: dev_start
 
 dev:
