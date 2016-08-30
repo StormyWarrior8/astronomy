@@ -1,0 +1,10 @@
+body {
+  color: #555
+}
+body pre {
+  color: #eee
+}
+body nav {}
+body nav img {
+  display: inline-block !important
+}

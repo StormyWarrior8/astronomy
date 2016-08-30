@@ -7,7 +7,7 @@ module.exports = () => {
   while(i < total){
     i++
     var username = faker.internet.userName()
-    var repo = faker.hacker.adjective()+'-'+faker.hacker.noun()
+    var repo = faker.helpers.slugify(faker.hacker.adjective()+' '+faker.hacker.noun())
     var results = {
       'id': i,
       'owner': {

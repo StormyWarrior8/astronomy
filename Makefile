@@ -16,7 +16,23 @@ fake-github:
 	npm run json-server -- gh-repo.js --watch gh-repo.js --port 9998
 .PHONY: fake-github
 
-dev_start: server watch fake-github
+build-css:
+	npm run postcss -- --use postcss-cssnext --postcss-cssnext.browsers "last 2 versions" --use postcss-import -o style.css src/app.css
+.PHONY: build-css
+
+watch-css:
+	npm run postcss -- --use postcss-cssnext --postcss-cssnext.browsers "last 2 versions" --use postcss-import --watch -o style.css src/app.css
+.PHONY: watch-css
+
+test-e2e:
+	npm run mocha -- test -g ^E2E:\ .*$
+.PHONY: test-e2e
+
+test-unit:
+	npm run mocha -- test -g ^UNIT:\ .*$
+.PHONY: test-e2e
+
+dev_start: server watch watch-css fake-github
 .PHONY: dev_start
 
 dev:

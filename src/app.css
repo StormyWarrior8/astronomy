@@ -1,0 +1,15 @@
+:root {
+  --textColor: #555;
+}
+
+body {
+  color:var(--textColor);
+  & pre {
+    color:#eee;
+  }
+  & nav{
+    & img {
+      display:inline-block !important;
+    }
+  }
+}
