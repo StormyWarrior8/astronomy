@@ -4,6 +4,7 @@ import m from 'mithril'
 console.log('store')
 import store from './store'
 console.log(store)
+window.store = store
 
 // end redux logic block
 

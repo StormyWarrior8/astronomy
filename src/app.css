@@ -13,3 +13,49 @@ body {
     }
   }
 }
+ul.repos {
+  list-style-type:none;
+  & li.repo {
+    padding:15px;
+    border-bottom:solid 1px #eee;
+    & img{
+      margin-right:15px;
+    }
+    & span {
+      margin-right:10px;
+    }
+    & span.title {
+      font-size:20px;
+    }
+    & span.lang {
+      font-size:12px;
+    }
+    & i {
+      margin-right:5px;
+    }
+    & a.repo {
+      display:inline-block;
+      width:100%;
+      font-size:12px;
+      padding-left:40px;
+    }
+    & a.owner {
+      display:inline-block;
+      width:100%;
+      font-size:12px;
+      padding-left:40px;
+    }
+    & ul.tags {
+      list-style-type:none;
+      & li.tag {
+        font-size:11px;
+        display:inline-block;
+        padding: 2px 5px;
+        background-color:#0a0;
+        color:#fff;
+        margin: 0 5px 5px 0;
+        border-radius:3px;
+      }
+    }
+  }
+}

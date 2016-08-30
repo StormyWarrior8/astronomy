@@ -1,10 +1,56 @@
 body {
-  color: #555
+  color:#555
 }
 body pre {
-  color: #eee
+  color:#eee
 }
 body nav {}
 body nav img {
-  display: inline-block !important
+  display:inline-block !important
+}
+ul.repos {
+  list-style-type:none
+}
+ul.repos li.repo {
+  padding:15px;
+  border-bottom:solid 1px #eee
+}
+ul.repos li.repo img {
+  margin-right:15px
+}
+ul.repos li.repo span {
+  margin-right:10px
+}
+ul.repos li.repo span.title {
+  font-size:20px
+}
+ul.repos li.repo span.lang {
+  font-size:12px
+}
+ul.repos li.repo i {
+  margin-right:5px
+}
+ul.repos li.repo a.repo {
+  display:inline-block;
+  width:100%;
+  font-size:12px;
+  padding-left:40px
+}
+ul.repos li.repo a.owner {
+  display:inline-block;
+  width:100%;
+  font-size:12px;
+  padding-left:40px
+}
+ul.repos li.repo ul.tags {
+  list-style-type:none
+}
+ul.repos li.repo ul.tags li.tag {
+  font-size:11px;
+  display:inline-block;
+  padding:2px 5px;
+  background-color:#0a0;
+  color:#fff;
+  margin:0 5px 5px 0;
+  border-radius:3px
 }

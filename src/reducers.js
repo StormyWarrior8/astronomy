@@ -7,12 +7,13 @@ export const initialState = {
   toggled: false,
   fetchingRepos: false,
   didInvalidate: false,
-  lastUpdated:null,
-  repos : [],
+  lastUpdated: null,
+  repos: [],
   userActions: [
     {
       type: 'USER_LOADED_PAGE',
-      time: moment().format()
+      time: moment().format(),
+      rawData: {}
     }
   ]
 }
@@ -21,49 +22,34 @@ export function appReducer (state = initialState, action) {
   switch (action.type) {
     case actions.CLICK_BUTTON:
       return {
-        ...state,
-        userActions: [
-          ...state.userActions,
-          {
-            time: action.time,
-            type: action.type
-          }
-        ]
+        ...state
       }
     case actions.TOGGLE_BUTTON:
       return {
         ...state,
-        toggled: !state.toggled,
-        userActions: [
-          ...state.userActions,
-          {
-            time: action.time,
-            type: action.type
-          }
-        ]
+        toggled: !state.toggled
       }
     case actions.FETCH_REPOS:
       return {
         ...state,
-        fetchingRepos: true,
-        userActions: [
-          ...state.userActions,
-          {
-            time: action.time,
-            type: action.type
-          }
-        ]
+        fetchingRepos: true
       }
     case actions.GOT_REPOS:
       return {
         ...state,
         fetchingRepos: false,
-        repos: action.repos,
+        repos: action.repos
+      }
+    case actions.LOG_EVENT:
+      return {
+        ...state,
         userActions: [
           ...state.userActions,
           {
             time: action.time,
-            type: action.type
+            type: action.rawData.type,
+            rawData: action.rawData,
+            appState: action.appState
           }
         ]
       }

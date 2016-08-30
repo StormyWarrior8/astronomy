@@ -34,3 +34,13 @@ export function gotRepos (repos, time) {
     repos
   }
 }
+
+export const LOG_EVENT = 'LOG_EVENT'
+
+export function logEvent (event, time) {
+  return {
+    type: LOG_EVENT,
+    rawData: event,
+    time
+  }
+}
