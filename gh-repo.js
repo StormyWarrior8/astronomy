@@ -54,6 +54,7 @@ module.exports = () => {
     theseTags = _.without(theseTags, undefined)
     var results = {
       id: i,
+      github_id: i,
       owner: {
         login: username,
         id: i,
