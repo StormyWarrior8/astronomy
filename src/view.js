@@ -7,7 +7,7 @@ import * as thunks from './thunks'
 
 export function appView ({store}) {
   return ctrl => {
-    var data = store.getState()
+    // var data = store.getState()
     return m('div', [
       m('nav.navbar.navbar-light.bg-faded', [
         m('.navbar-brand', [

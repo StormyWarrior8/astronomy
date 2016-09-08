@@ -8,7 +8,7 @@ export function fetchReposThunk () {
   return dispatch => {
     dispatch(actions.fetchRepos(moment().format()))
     return new Promise((resolve, reject)=>{
-      request('http://localhost:9998/repos').then(results=>{
+      request('http://localhost:9998/user/stars').then(results=>{
         console.log(results)
         dispatch(actions.gotRepos(results.body, moment().format()))
         resolve(results)

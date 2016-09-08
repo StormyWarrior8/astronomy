@@ -6,7 +6,7 @@ export const logger = store => next => action => {
   if(action.type !== 'LOG_EVENT' && action.type){
     var thisTime = new Date()
     thisTime = moment(thisTime)
-    var appState = store.getState()
+    var appState = {}
     store.dispatch(actions.logEvent(action, thisTime.format(), appState))
   }
   let result = next(action)

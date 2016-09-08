@@ -9,7 +9,7 @@ watch: node_modules
 .PHONY: watch
 
 server:
-	npm run http-server . -- -p 9999
+	npm run http-server . -- -p 9999 --push-state
 .PHONY: server
 
 fake-github:

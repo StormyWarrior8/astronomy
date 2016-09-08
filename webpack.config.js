@@ -16,7 +16,7 @@ module.exports = {
         query: {
           presets: [ 'es2015', 'stage-0' ],
           plugins: [
-            // [ 'transform-react-jsx', { pragma: 'element' } ],
+            [ 'transform-react-jsx', { pragma: 'element' } ],
             [ 'babel-plugin-webpack-alias' ]
           ]
         }

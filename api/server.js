@@ -4,6 +4,7 @@ var Boom = require('boom')
 var faker = require('faker')
 var uuid = require('uuid')
 var logger = require('koa-logger')
+var cors = require('koa-cors');
 var _ = require('lodash')
 var app = koa()
 
@@ -43,6 +44,7 @@ router
     this.body = foundRepo[0].tags
   })
 
+app.use(cors())
 app.use(logger())
 app.use(router.routes())
 app.use(router.allowedMethods({

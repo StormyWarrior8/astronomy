@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk'
 import * as reducers from './reducers'
 import * as middleware from './reducerMiddleware'
 
-const store = createStore(
+const reduxStore = createStore(
   reducers.appReducer,
   // compose(
     applyMiddleware(
@@ -13,4 +13,4 @@ const store = createStore(
     ))
     // ,window.devToolsExtension ? window.devToolsExtension() : f => f
   // )
-export default store
+export default reduxStore
