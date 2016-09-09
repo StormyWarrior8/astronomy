@@ -67,6 +67,7 @@
     "deku": "^0.5.6",
     "deku-redux": "^1.1.2",
     "deku-router": "^1.0.1",
+    "dotty": "0.0.2",
     "enroute": "^1.0.1",
     "koa": "^1.2.2",
     "koa-cors": "0.0.16",

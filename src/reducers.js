@@ -9,6 +9,19 @@ export const initialState = {
   didInvalidate: false,
   lastUpdated: null,
   repos: [],
+  ui:{
+    list:{
+      displayColumns:[
+        'owner.avatar_url',
+        'name',
+        'language',
+        'forks_count',
+        'stargazers_count',
+        'owner.login',
+        'tags'
+      ]
+    }
+  },
   userActions: [
     {
       type: 'USER_LOADED_PAGE',
